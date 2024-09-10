@@ -5,7 +5,7 @@ This is the code behind my joint work with Alessandro Selvitella on applying Lie
 In order to run the code, the file ```augmentor_module.c``` has to be compiled on your machine. 
 
 ### Step 1: Finding ```Python.h```
-Before compiling it, you will need to locate the ```Python.h``` header file, and then enter this file path at the start of ```augmentor_module.c```. On Ubuntu (e.g. when using a server), this can be done by using the following command:
+Before compiling it, you will need to locate the ```Python.h``` header file, and then type this file path at the beginning of ```augmentor_module.c```. On Ubuntu (e.g. when using a server), this can be done by using the following command:
 ```
 find ~/ -type f -name "Python.h"
 ```
