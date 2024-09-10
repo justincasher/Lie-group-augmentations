@@ -1,5 +1,5 @@
 # Lie group augmentations
-This is the code behind my joint work with Alessandro Selvitella "On image data augmentation via low-dimensional Lie groups". 
+This is the code behind my joint work with Alessandro Selvitella on applying Lie groups to augment images.
 
 ## Compiling
 In order to run the code, the file ```augmentor_module.c``` has to be compiled on your machine. 
