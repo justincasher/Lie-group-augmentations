@@ -1,4 +1,17 @@
-def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_name) : 
+def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_name) :
+    """
+    Trains a WideResNet model on the CIFAR-100 dataset with a
+    given percentage of the data being augmented.
+
+    :type deviation: float
+        How large of transformations to generate
+    :type complexPGL2Pct: int
+        What percent of the images to apply a PGL(C, 2) transformation to
+    :type realPGL2SquaredPct: int
+        What percent of the images to apply a PGL(R, 2)^2 transformation to
+    :type realPGL3Pct: int
+        What percent of the images to apply a PGL(R, 3) transformation to
+    """
 
     # includes: general
     import numpy as np
@@ -14,11 +27,7 @@ def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_na
     import torchvision.transforms as transforms 
 
     # import models
-    from models.resnet import ResNet50
-    from models.densenet import densenet201
-    from models.shake_shake import ShakeShake
     from models.wide_resnet import WideResNet
-
 
     # includes: data augmentation
     from augmentor import augment
@@ -27,7 +36,8 @@ def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_na
     batch_size = 128
     image_size = 32
 
-    # training; we do not normalize until after augmenting
+    # import training data
+    # we do not normalize until after augmentation
     train_transform = transforms.Compose([
         transforms.ToTensor(),
     ])
@@ -45,10 +55,10 @@ def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_na
         shuffle=True
     ) 
 
-    # testing
+    # import testing data
     test_transform = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
     ])
 
     test_set = torchvision.datasets.CIFAR100(
@@ -112,13 +122,14 @@ def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_na
         # testing procedure 
         if (epoch+1) % 5 == 0 and epoch > 0 : 
             net.eval()
-            
+
+            # compute time per epoch
             time_diff = round(time() - start, 2)
             average_time = round(time_diff / (epoch+1), 2)
-                    
+
+            # compute accuracy
             correct = 0
             total = 0
-
             with torch.no_grad():
                 for images, labels in test_loader:
                     # pass to device 
