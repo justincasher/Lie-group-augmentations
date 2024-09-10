@@ -1,10 +1,26 @@
 #define PY_SSIZE_T_CLEAN
-#include "C:\Users\Justin Asher\AppData\Local\Programs\Python\Python312\include\Python.h"
+#include "..\include\Python.h" // set this to the Python.h file path
 
+/* 
+ * Squares the input number
+ * 
+ * @param double num -> The number to be squared 
+ *
+ * @returns double -> The result of squaring num
+*/
 double square(double num) {
     return num * num;
 }
 
+/*
+ * Applies a given PGL(C, 2) transformation to a given image
+ *
+ * @param double *image -> The image to be augmented, given as a vector
+ * @param int image_size -> The width/height of the square image 
+ * @param double a_r, a_i, b_r, b_i, c_r, c_i, d_r, d_i -> Matrix elements
+ *
+ * @returns void
+*/
 void complexPGL2TransformImage(double *image, int image_size, double a_r, double a_i, double b_r, double b_i, double c_r, double c_i, double d_r, double d_i) {
 
     // create copy of array 
@@ -57,7 +73,15 @@ void complexPGL2TransformImage(double *image, int image_size, double a_r, double
     }
 }
 
-
+/*
+ * Applies a given PGL(R, 2)^2 transformation to a given image
+ *
+ * @param double *image -> The image to be augmented, given as a vector
+ * @param int image_size -> The width/height of the square image 
+ * @param double a_1, b_1, c_1, d_1, a_2, b_2, c_2, d_2 -> Matrix elements
+ *
+ * @returns void
+*/
 void realPGL2SqrTransformImage(double *image, int image_size, double a_1, double b_1, double c_1, double d_1, double a_2, double b_2, double c_2, double d_2) {
 
     // create copy of array 
@@ -109,7 +133,15 @@ void realPGL2SqrTransformImage(double *image, int image_size, double a_1, double
     }
 }
 
-
+/*
+ * Applies a given PGL(R, 3) transformation to a given image
+ *
+ * @param double *image -> The image to be augmented, given as a vector
+ * @param int image_size -> The width/height of the square image 
+ * @param double a_1, b_1, c_1, a_2, b_2, c_2, a_3, b_3, c_3 -> Matrix elements
+ *
+ * @returns void
+*/
 void realPGL3TransformImage(double *image, int image_size, double a_1, double b_1, double c_1, double a_2, double b_2, double c_2, double a_3, double b_3, double c_3) {
 
     // create copy of array 
