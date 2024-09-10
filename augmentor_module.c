@@ -1,5 +1,5 @@
 #define PY_SSIZE_T_CLEAN
-#include "..\include\Python.h" // set this to the Python.h file path
+#include "...\include\Python.h" // set this to the Python.h file path
 
 /* 
  * Squares the input number
