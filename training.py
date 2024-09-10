@@ -76,9 +76,6 @@ def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_na
 
     # network architecture
     net = WideResNet(depth=28, num_classes=100, widen_factor=10, dropRate=0.3)
-
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    print(device)
     net.to(device)
     
     # optimizer choices
@@ -89,6 +86,11 @@ def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_na
 
     # training procedure
     start = time()
+
+    write_path = "outputs/" + save_name + ".txt"
+    f = open(write_path, "a")
+    f.write("Epoch, accuracy, average time\n")
+    f.close()
 
     print("Epoch, accuracy, average time")
 
@@ -144,7 +146,10 @@ def training(deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct, save_na
         
             accuracy = round(100 * correct / total, 2)
             
-            print(f"{epoch+1} \t {accuracy} \t {average_time}")
+            write_path = "outputs/" + save_name + ".txt"
+            f = open(write_path, "a")
+            f.write(f"{epoch+1} \t {accuracy} \t {average_time}\n")
+            f.close()
 
     # save network
     path = "networks/" + save_name
