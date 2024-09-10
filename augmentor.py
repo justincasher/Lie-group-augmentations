@@ -10,7 +10,7 @@ import torchvision.transforms as transforms
 # includes: C augmentator
 import ctypes 
 
-c_augmentor = ctypes.WinDLL(r"C:\Users\Justin Asher\OneDrive\Desktop\ML\Lie_group_transformations\mine\c_augmentor\augmentor.dll")
+c_augmentor = ctypes.WinDLL(r"...\augmentor.dll")
 
 ND_POINTER_1 = np.ctypeslib.ndpointer(
     dtype=np.float64, 
