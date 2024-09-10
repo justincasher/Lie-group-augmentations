@@ -10,8 +10,13 @@ import torchvision.transforms as transforms
 # includes: C augmentator
 import ctypes 
 
-c_augmentor = ctypes.WinDLL(r"...\augmentor.dll")
+# import c_augmentor if using windows (see README)
+c_augmentor = ctypes.WinDLL(r"...\augmentor.dll") 
 
+# import c_augmentor if using Ubuntu/Mac (see README)
+# c_augmentor = ctypes.CDLL(r"...\augmentor.so") 
+
+# declare data types for imported C methods
 ND_POINTER_1 = np.ctypeslib.ndpointer(
     dtype=np.float64, 
     ndim=1,
@@ -28,8 +33,7 @@ c_augmentor.complexPGL2TransformImage.argtypes = [
     ctypes.c_double, 
     ctypes.c_double,
     ctypes.c_double, 
-    ctypes.c_double, 
-    ctypes.c_double,
+    ctypes.c_double
 ]
 
 c_augmentor.complexPGL2TransformImage.restype = None
@@ -44,8 +48,7 @@ c_augmentor.realPGL2SqrTransformImage.argtypes = [
     ctypes.c_double, 
     ctypes.c_double,
     ctypes.c_double, 
-    ctypes.c_double, 
-    ctypes.c_double,
+    ctypes.c_double 
 ]
 
 c_augmentor.realPGL2SqrTransformImage.restype = None
@@ -61,14 +64,28 @@ c_augmentor.realPGL3TransformImage.argtypes = [
     ctypes.c_double,
     ctypes.c_double, 
     ctypes.c_double, 
-    ctypes.c_double,
-    ctypes.c_double,
+    ctypes.c_double
 ]
 
 c_augmentor.realPGL3TransformImage.restype = None
 
-# main augmentor 
 def augment(images, image_size, deviation, complexPGL2Pct, realPGL2SquaredPct, realPGL3Pct) : 
+    """
+    Augments images by randomly generating coefficients.
+
+    :type images: Torch tensor
+        Images to be augmented
+    :type image_size: int   
+        The width/length of the square images
+    :type deviation: float
+        How large of transformations to generate
+    :type complexPGL2Pct: int
+        What percent of the images to apply a PGL(C, 2) transformation to
+    :type realPGL2SquaredPct: int
+        What percent of the images to apply a PGL(R, 2)^2 transformation to
+    :type realPGL3Pct: int
+        What percent of the images to apply a PGL(R, 3) transformation to
+    """
 
     # rescale x2
     new_images = torchvision.transforms.Resize(
