@@ -1,5 +1,5 @@
 # Lie group augmentations
-This is the code behind my joint work with Alessandro Selvitella on applying Lie groups to augment images. In particular, we apply PGL(C, 2), PGL(R, 2)^2, and PGL(R, 3) Lie group actions to augment images on the CIFAR-100 benchmark, then train neural networks on these images, achieving an increase in accuracy in each case. These augmentation methods are implemented in the file ```augmentor_module.c```, which then (after compiling it) can be imported into ```augmentor.py``` to apply our methods.
+This is the code behind my joint work with Alessandro Selvitella on applying Lie groups to augment images. In particular, we apply PGL(C, 2), PGL(R, 2)^2, and PGL(R, 3) Lie group actions to augment images on the CIFAR-100 benchmark, then train neural networks on these images, achieving an increase in accuracy in each case. These augmentation methods are implemented in the file ```augmentor_module.c```. After compiling this file, you can import it into ```augmentor.py``` to apply our methods.
 
 This software is available under the MIT License.
 
