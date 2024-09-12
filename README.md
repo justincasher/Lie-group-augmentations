@@ -1,5 +1,5 @@
 # Lie group augmentations
-This is the code behind my joint work with Alessandro Selvitella on applying Lie groups to augment images.
+This is the code behind my joint work with Alessandro Selvitella on applying Lie groups to augment images. This software is available under the MIT License.
 
 ## Compiling
 In order to run the code, the file ```augmentor_module.c``` has to be compiled on your machine. 
@@ -27,3 +27,4 @@ To compile ```augmentor_module.c``` on Ubuntu, you likewise use the following co
 ```
 gcc -Wall -pedantic -shared -fPIC -o augmentor.so augmentor_module.c
 ```
+
