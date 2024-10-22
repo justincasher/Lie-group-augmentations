@@ -121,7 +121,6 @@ def augment(images, image_size, deviation, complexPGL2Pct, realPGL2SquaredPct, r
             c_augmentor.complexPGL2TransformImage(
                 reshaped_image, 
                 image_size, 
-                deviation, 
                 a_r, 
                 a_i,
                 b_r, 
@@ -154,7 +153,6 @@ def augment(images, image_size, deviation, complexPGL2Pct, realPGL2SquaredPct, r
             c_augmentor.realPGL2SqrTransformImage(
                 reshaped_image, 
                 image_size,
-                deviation,
                 a_1, 
                 b_1, 
                 c_1, 
@@ -188,7 +186,6 @@ def augment(images, image_size, deviation, complexPGL2Pct, realPGL2SquaredPct, r
             c_augmentor.realPGL3TransformImage(
                 reshaped_image, 
                 image_size,
-                deviation,
                 a_1,
                 b_1,
                 c_1,
